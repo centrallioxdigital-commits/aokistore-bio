@@ -390,6 +390,63 @@
     .reveal, .reveal-stagger > *{ transition:none; opacity:1; transform:none; }
     .scroll-cue span{ animation:none; }
     .country-panel{ transition:none; }
+    .wa-pulse{ animation:none; }
+    .wa-typing i{ animation:none; }
+  }
+
+  /* ---------- WhatsApp floating widget ---------- */
+  .wa-float{
+    position:fixed; right:18px; bottom:18px; z-index:80;
+    display:flex; flex-direction:column; align-items:flex-end; gap:12px;
+  }
+  .wa-bubble{
+    display:block; max-width:250px; background:#fff; border-radius:16px 16px 4px 16px;
+    padding:14px 16px; box-shadow:0 16px 40px rgba(10,10,10,0.2); text-decoration:none;
+    position:relative; opacity:0; transform:translateY(14px) scale(0.94);
+    pointer-events:none; transition:opacity .35s ease, transform .35s ease;
+  }
+  .wa-bubble.is-visible{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .wa-bubble-close{
+    position:absolute; top:-8px; right:-8px; width:22px; height:22px; border-radius:50%;
+    border:1.5px solid var(--line); background:#fff; color:var(--muted); font-size:13px; line-height:1;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2;
+  }
+  .wa-bubble-close:hover{ background:var(--panel); color:var(--ink); }
+  .wa-bubble-head{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .wa-bubble-avatar{
+    width:36px; height:36px; border-radius:50%; background:var(--panel); padding:5px; flex-shrink:0;
+  }
+  .wa-bubble-name{ font-size:12.5px; font-weight:600; margin:0; display:flex; align-items:center; gap:6px; color:var(--ink); }
+  .wa-bubble-dot{ width:6px; height:6px; border-radius:50%; background:var(--whatsapp-green); display:inline-block; }
+  .wa-bubble-status{ font-size:10.5px; color:var(--muted); margin:1px 0 0; }
+  .wa-bubble-msg{
+    background:var(--panel); border-radius:12px 12px 12px 2px; padding:9px 12px;
+    font-size:12.5px; line-height:1.5; color:var(--ink); min-height:18px;
+  }
+  .wa-typing{ display:inline-flex; gap:4px; align-items:center; padding:3px 2px; }
+  .wa-typing i{
+    width:6px; height:6px; border-radius:50%; background:var(--muted); display:inline-block;
+    animation:waTyping 1.2s ease-in-out infinite;
+  }
+  .wa-typing i:nth-child(2){ animation-delay:.15s; }
+  .wa-typing i:nth-child(3){ animation-delay:.3s; }
+  @keyframes waTyping{ 0%,60%,100%{ transform:translateY(0); opacity:.5; } 30%{ transform:translateY(-4px); opacity:1; } }
+  .wa-button{
+    position:relative; width:58px; height:58px; border-radius:50%; background:var(--whatsapp-green);
+    display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0;
+    box-shadow:0 10px 26px rgba(21,138,65,0.4);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .wa-button:hover{ background:var(--whatsapp-green-deep); transform:scale(1.06); }
+  .wa-button:active{ transform:scale(0.95); }
+  .wa-pulse{
+    position:absolute; inset:0; border-radius:50%; border:2px solid var(--whatsapp-green);
+    animation:waPulse 2.4s ease-out infinite; pointer-events:none;
+  }
+  @keyframes waPulse{ 0%{ transform:scale(1); opacity:.6; } 100%{ transform:scale(1.7); opacity:0; } }
+  @media (max-width:480px){
+    .wa-float{ right:14px; bottom:14px; }
+    .wa-bubble{ max-width:min(72vw, 240px); }
   }
 </style>
 </head>
@@ -807,6 +864,52 @@
       window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(fillBrands, 200);
+      });
+    })();
+  </script>
+
+  <div class="wa-float" id="waFloat">
+    <a class="wa-bubble" id="waBubble" href="https://api.whatsapp.com/send?phone=5511918939576&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">
+      <button class="wa-bubble-close" id="waBubbleClose" aria-label="Fechar">&times;</button>
+      <span class="wa-bubble-head">
+        <img class="wa-bubble-avatar" src="logo-aoki.png" alt="AOKI Store">
+        <span>
+          <span class="wa-bubble-name">AOKI Store <span class="wa-bubble-dot"></span></span>
+          <span class="wa-bubble-status">Online agora</span>
+        </span>
+      </span>
+      <span class="wa-bubble-msg" id="waBubbleMsg">
+        <span class="wa-typing"><i></i><i></i><i></i></span>
+      </span>
+    </a>
+    <a class="wa-button" href="https://api.whatsapp.com/send?phone=5511918939576&text=Ol%C3%A1%2C%20vim%20do%20site%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener" aria-label="Fale no WhatsApp">
+      <span class="wa-pulse" aria-hidden="true"></span>
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.08L2 22l5.06-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2Zm0 18a7.9 7.9 0 0 1-4.03-1.1l-.29-.17-3 .79.8-2.93-.19-.3A7.93 7.93 0 1 1 12 20Z" fill="currentColor"/><path d="M16.6 13.9c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.98-.14.17-.29.19-.54.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.42 1.02 2.58.13.17 1.75 2.67 4.24 3.75.59.25 1.05.4 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.17-.48-.29Z" fill="currentColor"/></svg>
+    </a>
+  </div>
+
+  <script>
+    (function () {
+      var bubble = document.getElementById('waBubble');
+      var msgEl = document.getElementById('waBubbleMsg');
+      var closeBtn = document.getElementById('waBubbleClose');
+      var MESSAGE = 'Oi! 👋 Tudo original, sem réplica. Posso te ajudar a encontrar sua peça?';
+      var dismissed = false;
+
+      setTimeout(function () {
+        if (dismissed) return;
+        bubble.classList.add('is-visible');
+        setTimeout(function () {
+          if (dismissed) return;
+          msgEl.textContent = MESSAGE;
+        }, 1300);
+      }, 3000);
+
+      closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dismissed = true;
+        bubble.classList.remove('is-visible');
       });
     })();
   </script>
