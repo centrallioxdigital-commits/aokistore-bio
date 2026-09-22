@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AOKI Store — Importados, Originais e Streetwear</title>
+<meta name="description" content="AOKI Store: 14 anos de credibilidade em vestuário importado e original, direto do Japão e dos Estados Unidos, com atitude streetwear brasileira.">
+<link rel="icon" type="image/png" href="logo-aoki.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --paper:#ffffff;
+    --panel:#f4f3f1;
+    --muted:#6b6b6b;
+    --line:rgba(10,10,10,0.12);
+    --aoki-red:#e2202b;
+    --aoki-red-deep:#b81620;
+    --jp-red:#bc002d;
+    --br-green:#009c3b;
+    --br-yellow:#ffdf00;
+    --br-blue:#002776;
+    --us-navy:#3c3b6e;
+    --us-red:#b22234;
+    --whatsapp-green:#1da851;
+    --whatsapp-green-deep:#158a41;
+    --verified-blue:#1d9bf0;
+    color-scheme: light;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scroll-padding-top:78px; overflow-x:hidden; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  ::selection{ background:var(--aoki-red); color:#fff; }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#fff; }
+  ::-webkit-scrollbar-thumb{ background:var(--aoki-red); border-radius:999px; border:2px solid #fff; }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--aoki-red-deep); }
+
+  .eyebrow{
+    font-size:12px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--aoki-red); margin:0 0 12px;
+  }
+  h1,h2,h3{ font-family:'Anton',sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.01em; margin:0; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 30px; border-radius:999px; font-weight:600; font-size:14px;
+    letter-spacing:0.04em; text-transform:uppercase; text-decoration:none;
+    border:1.5px solid var(--ink); cursor:pointer;
+    transition:transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .btn:active{ transform:scale(0.96); }
+  .btn-primary{
+    background:var(--whatsapp-green); border-color:rgba(255,255,255,0.4); color:#fff;
+    box-shadow:0 6px 18px rgba(21,138,65,0.3);
+  }
+  .btn-primary:hover{ background:var(--whatsapp-green-deep); border-color:rgba(255,255,255,0.75); box-shadow:0 8px 24px rgba(21,138,65,0.4); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; border-color:var(--ink); color:var(--ink); }
+  .btn-outline:hover{ background:var(--ink); color:#fff; transform:translateY(-2px); }
+  .btn-outline.on-dark{ border-color:rgba(255,255,255,0.6); color:#fff; }
+  .btn-outline.on-dark:hover{ background:#fff; color:var(--ink); }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:fixed; inset:0 0 auto 0; z-index:40;
+    background:transparent;
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+    padding:18px 0;
+  }
+  .nav.scrolled{ background:rgba(255,255,255,0.92); backdrop-filter:blur(10px); box-shadow:0 2px 20px rgba(10,10,10,0.08); padding:10px 0; }
+  .nav-inner{ max-width:1180px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand-logo{ height:34px; width:auto; transition:height .3s ease; }
+  .nav.scrolled .brand-logo{ height:28px; }
+  .brand-name{ font-family:'Anton',sans-serif; font-size:15px; letter-spacing:0.03em; color:var(--ink); }
+  .nav-links{ display:flex; gap:34px; }
+  .nav-links a{
+    font-size:12.5px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    text-decoration:none; color:var(--ink); position:relative; padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:0; height:2px; background:var(--aoki-red);
+    transition:right .25s ease;
+  }
+  .nav-links a:hover::after{ right:0; }
+  .nav-cta{ padding:11px 22px; font-size:12px; white-space:nowrap; flex-shrink:0; }
+  @media (max-width:480px){ .nav-cta{ padding:9px 14px; font-size:10.5px; } .brand-name{ font-size:13px; } }
+  @media (max-width:860px){ .nav-links{ display:none; } }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; min-height:100svh; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    padding:140px 24px 80px; overflow:hidden; isolation:isolate;
+  }
+  .hero-bg{
+    position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background-color:var(--paper);
+    background-image:
+      radial-gradient(rgba(10,10,10,0.055) 1px, transparent 1.6px),
+      repeating-conic-gradient(from 0deg at 50% -10%, rgba(226,32,43,0.07) 0deg 4deg, transparent 4deg 16deg),
+      radial-gradient(ellipse 70% 55% at 12% 100%, rgba(0,156,59,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 88% 100%, rgba(60,59,110,0.10), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(188,0,45,0.12), transparent 60%);
+    background-size:15px 15px, auto, auto, auto, auto;
+    background-repeat:repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  }
+  .hero-flags{ display:flex; gap:10px; margin-bottom:26px; }
+  .hero-flags .flag-ico{
+    width:34px; height:24px; border-radius:4px; overflow:hidden;
+    box-shadow:0 0 0 1px rgba(10,10,10,0.15), 0 6px 16px rgba(10,10,10,0.12);
+  }
+  .hero-flags .flag-ico svg{ display:block; width:100%; height:100%; }
+  .hero-title{ font-size:clamp(40px, 9vw, 92px); line-height:0.98; color:var(--ink); }
+  .hero-title .accent{ color:var(--aoki-red); }
+  .hero-sub{
+    max-width:560px; margin:26px auto 0; font-size:17px; line-height:1.6; color:var(--muted); font-weight:300;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:36px; }
+  .hero-stats{ display:flex; gap:48px; justify-content:center; margin-top:68px; flex-wrap:wrap; }
+  .stat{ text-align:center; }
+  .stat-num{ display:block; font-family:'Anton',sans-serif; font-size:38px; color:var(--ink); }
+  .stat-label{ display:block; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+  .scroll-cue{
+    position:absolute; left:50%; bottom:28px; transform:translateX(-50%);
+    width:26px; height:42px; border:1.5px solid var(--ink); border-radius:999px; opacity:0.5;
+  }
+  .scroll-cue span{
+    position:absolute; top:8px; left:50%; width:4px; height:8px; margin-left:-2px;
+    background:var(--ink); border-radius:999px; animation:cueMove 1.8s ease-in-out infinite;
+  }
+  @keyframes cueMove{ 0%,100%{ transform:translateY(0); opacity:1; } 50%{ transform:translateY(12px); opacity:0.3; } }
+
+  /* ---------- Marquee strip ---------- */
+  .strip{ background:var(--ink); overflow:hidden; white-space:nowrap; position:relative; }
+  .strip-track{ display:inline-flex; width:max-content; animation:stripScroll var(--dur,30s) linear infinite; }
+  .strip-half{ display:inline-flex; }
+  .strip-item{
+    display:inline-flex; align-items:center; gap:14px; padding:14px 28px;
+    color:#fff; font-family:'Anton',sans-serif; font-size:15px; letter-spacing:0.06em;
+  }
+  .strip-item i{ width:5px; height:5px; border-radius:50%; background:var(--aoki-red); display:inline-block; }
+  @keyframes stripScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- Reveal ---------- */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  .reveal-stagger > *{ opacity:0; transform:translateY(26px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal-stagger.is-visible > *{ opacity:1; transform:translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1){ transition-delay:.05s; }
+  .reveal-stagger.is-visible > *:nth-child(2){ transition-delay:.15s; }
+  .reveal-stagger.is-visible > *:nth-child(3){ transition-delay:.25s; }
+  .reveal-stagger.is-visible > *:nth-child(4){ transition-delay:.35s; }
+
+  section{ padding:100px 0; }
+
+  /* ---------- Story ---------- */
+  .story-grid{ display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center; }
+  .story-text h2{ font-size:clamp(30px,4vw,46px); line-height:1.05; margin:8px 0 22px; }
+  .story-text p{ font-size:15.5px; line-height:1.75; color:var(--muted); font-weight:300; margin:0 0 16px; max-width:52ch; }
+  .story-visual{
+    position:relative; aspect-ratio:1/1; border-radius:18px; overflow:hidden;
+    background:
+      linear-gradient(135deg, rgba(188,0,45,0.9) 0 33.4%, rgba(60,59,110,0.9) 33.4% 66.7%, rgba(0,120,45,0.9) 66.7% 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .story-visual::before{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(rgba(255,255,255,0.16) 1px, transparent 1.4px);
+    background-size:16px 16px;
+  }
+  .story-visual .story-logo{ position:relative; width:58%; filter:drop-shadow(0 12px 30px rgba(0,0,0,0.35)); }
+  @media (max-width:900px){
+    .story-grid{ grid-template-columns:1fr; gap:40px; }
+    .story-visual{ order:-1; max-width:340px; margin:0 auto; }
+  }
+
+  /* ---------- Countries ---------- */
+  .countries-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .countries-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
+  .countries-grid{ display:flex; gap:14px; height:460px; }
+  .country-panel{
+    position:relative; flex:1; border-radius:16px; overflow:hidden; cursor:pointer;
+    display:flex; align-items:flex-end; padding:30px 24px;
+    transition:flex-grow .55s cubic-bezier(.22,1,.36,1);
+    isolation:isolate;
+  }
+  .country-panel::before{ content:""; position:absolute; inset:0; z-index:-2; }
+  .country-panel::after{ content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%); }
+  .country-panel.jp::before{ background:linear-gradient(160deg, #fff 0%, #fdecef 55%, var(--jp-red) 190%); }
+  .country-panel.us::before{ background:linear-gradient(160deg, #f4f4fa 0%, #dfe0ee 55%, var(--us-navy) 190%); }
+  .country-panel.br::before{ background:linear-gradient(160deg, #eafff0 0%, var(--br-yellow) 65%, var(--br-green) 190%); }
+  .country-panel:hover{ flex-grow:2.1; }
+  .country-flag{ position:absolute; top:24px; left:24px; width:38px; height:27px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,255,255,0.6), 0 6px 16px rgba(0,0,0,0.25); }
+  .country-panel h3{ position:relative; color:#fff; font-size:26px; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.35); }
+  .country-panel p{
+    position:relative; color:rgba(255,255,255,0.92); font-size:13.5px; line-height:1.6; font-weight:300;
+    max-width:280px; margin:10px 0 0; opacity:0; transform:translateY(8px);
+    transition:opacity .35s ease .1s, transform .35s ease .1s;
+  }
+  .country-panel:hover p{ opacity:1; transform:translateY(0); }
+  @media (max-width:760px){
+    .countries-grid{ flex-direction:column; height:auto; }
+    .country-panel{
+      height:auto; flex-grow:0 !important; padding:22px;
+      flex-direction:column; align-items:flex-start; gap:14px;
+    }
+    .country-flag{ position:static; }
+    .country-panel p{ opacity:1; transform:none; }
+  }
+
+  /* ---------- Pillars ---------- */
+  .pillars{ background:var(--panel); }
+  .pillars-head{ text-align:center; max-width:640px; margin:0 auto 50px; }
+  .pillars-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
+  .pillars-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .pillar{
+    background:#fff; border:1px solid var(--line); border-radius:16px; padding:32px 24px;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .pillar:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(10,10,10,0.1); border-color:transparent; }
+  .pillar-ico{
+    width:48px; height:48px; border-radius:12px; background:var(--aoki-red); color:#fff;
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+  }
+  .pillar h3{ font-family:'Jost',sans-serif; font-weight:600; text-transform:none; font-size:16.5px; letter-spacing:0; margin-bottom:10px; }
+  .pillar p{ font-size:13.5px; line-height:1.6; color:var(--muted); font-weight:300; margin:0; }
+  @media (max-width:900px){ .pillars-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .pillars-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- Social ---------- */
+  .social{ text-align:center; }
+  .social-head{ max-width:620px; margin:0 auto 46px; }
+  .social-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
+  .social-stats{ display:flex; justify-content:center; gap:44px; margin:26px 0 44px; flex-wrap:wrap; }
+  .ig-card{
+    max-width:420px; margin:0 auto 40px; padding:36px 32px; border-radius:20px;
+    border:1.5px solid var(--line); background:#fff; text-align:left;
+    display:flex; align-items:center; gap:18px;
+  }
+  .ig-avatar{
+    width:64px; height:64px; border-radius:50%; flex-shrink:0; padding:3px;
+    background:conic-gradient(from 210deg, var(--jp-red), var(--aoki-red), var(--us-navy), var(--br-green), var(--jp-red));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .ig-avatar img{ width:100%; height:100%; border-radius:50%; background:#fff; padding:8px; }
+  .ig-handle{ display:flex; align-items:center; gap:6px; font-weight:600; font-size:15px; }
+  .ig-bio{ font-size:13px; color:var(--muted); margin:4px 0 0; line-height:1.5; font-weight:300; }
+  .ig-topics{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:36px; }
+  .ig-topic{
+    display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px;
+    border:1px solid var(--line); font-size:12.5px; font-weight:500; color:var(--ink);
+  }
+
+  /* ---------- Stores ---------- */
+  .stores-grid{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .store{ border:1.5px solid var(--line); border-radius:18px; padding:30px; }
+  .store-top{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .store-pin{ width:44px; height:44px; border-radius:12px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .store h3{ font-family:'Jost',sans-serif; font-weight:600; text-transform:none; font-size:19px; letter-spacing:0; }
+  .store-addr{ font-size:13.5px; color:var(--muted); margin:0 0 20px; }
+  .store-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .store-actions a{ padding:11px 18px; font-size:12px; }
+  @media (max-width:760px){ .stores-grid{ grid-template-columns:1fr; } }
+
+  /* ---------- CTA final ---------- */
+  .cta-final{
+    background:var(--ink); color:#fff; text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-final::before{
+    content:""; position:absolute; inset:0;
+    background-image:radial-gradient(rgba(226,32,43,0.35) 0%, transparent 60%);
+    background-position:50% -10%; background-repeat:no-repeat; background-size:120% 100%;
+  }
+  .cta-final .wrap{ position:relative; }
+  .cta-final h2{ font-size:clamp(30px,5vw,54px); line-height:1.05; max-width:760px; margin:0 auto 30px; }
+  .cta-final .accent{ color:var(--aoki-red); }
+
+  /* ---------- Footer ---------- */
+  footer{ background:#fff; padding:56px 0 30px; border-top:1px solid var(--line); }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:44px; }
+  .foot-brand-logo{ height:38px; margin-bottom:14px; }
+  .foot-grid p{ font-size:13.5px; color:var(--muted); line-height:1.7; font-weight:300; max-width:36ch; }
+  .foot-col h4{ font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin:0 0 16px; font-weight:600; }
+  .foot-col a{ display:block; font-size:14px; text-decoration:none; color:var(--ink); margin-bottom:11px; transition:color .2s ease; }
+  .foot-col a:hover{ color:var(--aoki-red); }
+  .foot-flags{ display:flex; gap:8px; margin-top:16px; }
+  .foot-flags .flag-ico{ width:24px; height:17px; border-radius:3px; overflow:hidden; box-shadow:0 0 0 1px rgba(10,10,10,0.12); }
+  .foot-bottom{ border-top:1px solid var(--line); padding-top:22px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted); }
+  @media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; gap:30px; } }
+
+  @media (prefers-reduced-motion:reduce){
+    html{ scroll-behavior:auto; }
+    .reveal, .reveal-stagger > *{ transition:none; opacity:1; transform:none; }
+    .strip-track{ animation:none; }
+    .scroll-cue span{ animation:none; }
+    .country-panel{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img class="brand-logo" src="logo-aoki.png" alt="AOKI Store">
+        <span class="brand-name">AOKI STORE</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#historia">Sobre</a>
+        <a href="#paises">Origem</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#lojas">Lojas</a>
+      </nav>
+      <a class="btn btn-primary nav-cta" href="https://api.whatsapp.com/send?phone=5511918939576&text=Ol%C3%A1%21%20Vim%20do%20site%20da%20AOKI%20Store%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Fale conosco</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-flags" aria-hidden="true">
+        <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
+        <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
+        <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
+      </div>
+      <h1 class="hero-title">Importados.<br><span class="accent">Originais.</span><br>Sem réplica.</h1>
+      <p class="hero-sub">Streetwear autêntico direto do Japão e dos Estados Unidos, com a atitude das ruas do Brasil. 14 anos vestindo quem não usa qualquer coisa.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511918939576&text=Ol%C3%A1%21%20Vim%20do%20site%20da%20AOKI%20Store%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Fale no WhatsApp</a>
+        <a class="btn btn-outline" href="#lojas">Conhecer as lojas</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-count="14">0</span><span class="stat-label">Anos de loja</span></div>
+        <div class="stat"><span class="stat-num" data-count="64" data-suffix="mil">0</span><span class="stat-label">Seguidores</span></div>
+        <div class="stat"><span class="stat-num" data-count="2">0</span><span class="stat-label">Lojas físicas</span></div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span></span></div>
+    </section>
+
+    <div class="strip" aria-hidden="true">
+      <div class="strip-track" id="stripTrack">
+        <div class="strip-half" id="stripHalf">
+          <span class="strip-item"><i></i>Importados</span>
+          <span class="strip-item"><i></i>Originais</span>
+          <span class="strip-item"><i></i>Exclusivos</span>
+          <span class="strip-item"><i></i>Sem réplica</span>
+        </div>
+        <div class="strip-half" id="stripHalfClone"></div>
+      </div>
+    </div>
+
+    <section id="historia">
+      <div class="wrap">
+        <div class="story-grid reveal">
+          <div class="story-text">
+            <p class="eyebrow">A Essência AOKI</p>
+            <h2>Três países.<br>Uma só atitude.</h2>
+            <p>Há 14 anos a AOKI Store leva pra sua quebrada peças e acessórios importados de verdade — sem réplica, sem meio-termo. Cada peça carrega um pedaço de três culturas diferentes.</p>
+            <p>Do Japão, a obsessão pela qualidade e pelo detalhe. Dos Estados Unidos, o streetwear original que definiu geração. Do Brasil, a atitude de quem veste com identidade. É essa mistura que faz a AOKI ser reconhecida onde estiver.</p>
+          </div>
+          <div class="story-visual">
+            <img class="story-logo" src="logo-aoki.png" alt="AOKI Store">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="paises">
+      <div class="wrap">
+        <div class="countries-head reveal">
+          <p class="eyebrow">De onde vem a AOKI</p>
+          <h2>Japão × Estados Unidos × Brasil</h2>
+        </div>
+        <div class="countries-grid reveal">
+          <article class="country-panel jp">
+            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
+            <div>
+              <h3>Japão</h3>
+              <p>Curadoria rigorosa e respeito à qualidade — cada peça é escolhida como se fosse pra uso próprio.</p>
+            </div>
+          </article>
+          <article class="country-panel us">
+            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
+            <div>
+              <h3>Estados Unidos</h3>
+              <p>Streetwear original, direto de lá — as peças que definiram a cultura urbana no mundo todo.</p>
+            </div>
+          </article>
+          <article class="country-panel br">
+            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
+            <div>
+              <h3>Brasil</h3>
+              <p>Atitude e cultura de quebrada — a identidade que dá o tom de como cada peça é usada.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars" id="diferenciais">
+      <div class="wrap">
+        <div class="pillars-head reveal">
+          <p class="eyebrow">Por que AOKI</p>
+          <h2>Diferenciais que sustentam 14 anos de loja</h2>
+        </div>
+        <div class="pillars-grid reveal-stagger">
+          <div class="pillar">
+            <div class="pillar-ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2 20 5.5V11c0 5.2-3.4 9.8-8 11-4.6-1.2-8-5.8-8-11V5.5L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 12.2 10.7 14.4 15.3 9.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>100% Original</h3>
+            <p>Sem réplica, sem meio-termo. Toda peça é verificada antes de chegar até você.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Importado direto</h3>
+            <p>Peças trazidas direto do Japão e dos Estados Unidos, sem intermediário.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 7 4 9v11h16V9l-2-2M6 7l6-4 6 4M6 7h12" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 7a3 3 0 0 0 6 0" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+            <h3>Curadoria streetwear</h3>
+            <p>Seleção afiada pra quem entende de moda urbana e não abre mão de estilo.</p>
+          </div>
+          <div class="pillar">
+            <div class="pillar-ico" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>14 anos de loja</h3>
+            <p>Credibilidade construída venda após venda, com 2 lojas físicas de verdade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="social" id="comunidade">
+      <div class="wrap">
+        <div class="social-head reveal">
+          <p class="eyebrow">Comunidade</p>
+          <h2>Do estilo à comunidade</h2>
+        </div>
+        <div class="social-stats reveal">
+          <div class="stat"><span class="stat-num" data-count="64" data-suffix="mil">0</span><span class="stat-label">Seguidores</span></div>
+          <div class="stat"><span class="stat-num" data-count="14">0</span><span class="stat-label">Anos de história</span></div>
+        </div>
+        <div class="ig-card reveal">
+          <span class="ig-avatar"><img src="logo-aoki.png" alt="AOKI Store"></span>
+          <div>
+            <p class="ig-handle">@_aokistorebr
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/><path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </p>
+            <p class="ig-bio">🥇 Credibilidade em 14 anos de vendas<br>👕 Vestuário importado original<br>📍 2 lojas físicas</p>
+          </div>
+        </div>
+        <div class="ig-topics reveal-stagger">
+          <span class="ig-topic">👕 Streetwear</span>
+          <span class="ig-topic">🕶️ Acessórios</span>
+          <span class="ig-topic">🏬 Bastidores da loja</span>
+        </div>
+        <a class="btn btn-outline" href="https://www.instagram.com/_aokistorebr/" target="_blank" rel="noopener">Seguir no Instagram</a>
+      </div>
+    </section>
+
+    <section id="lojas">
+      <div class="wrap">
+        <div class="countries-head reveal">
+          <p class="eyebrow">Visite a gente</p>
+          <h2>Nossas lojas físicas</h2>
+        </div>
+        <div class="stores-grid reveal-stagger">
+          <div class="store">
+            <div class="store-top">
+              <span class="store-pin" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.5 7.5 12.5 7.5 12.5s7.5-7 7.5-12.5C19.5 5.36 16.14 2 12 2Zm0 10.3a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z" fill="currentColor"/></svg></span>
+              <h3>Shopping Central Park</h3>
+            </div>
+            <p class="store-addr">Loja física — encontre no mapa ou navegue direto pelo Waze.</p>
+            <div class="store-actions">
+              <a class="btn btn-outline" href="https://ul.waze.com/ul?venue_id=205129244.2051357972.37999137&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener">Waze</a>
+              <a class="btn btn-outline" href="https://maps.app.goo.gl/fysgQj1MYgVGM79x9" target="_blank" rel="noopener">Google Maps</a>
+            </div>
+          </div>
+          <div class="store">
+            <div class="store-top">
+              <span class="store-pin" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C7.86 2 4.5 5.36 4.5 9.5c0 5.5 7.5 12.5 7.5 12.5s7.5-7 7.5-12.5C19.5 5.36 16.14 2 12 2Zm0 10.3a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z" fill="currentColor"/></svg></span>
+              <h3>Caucaia do Alto</h3>
+            </div>
+            <p class="store-addr">Loja física — encontre no mapa ou navegue direto pelo Waze.</p>
+            <div class="store-actions">
+              <a class="btn btn-outline" href="https://ul.waze.com/ul?place=ChIJEz2Nht2nz5QRSsTcXYGw118&ll=-23.68750760%2C-47.02145560&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener">Waze</a>
+              <a class="btn btn-outline" href="https://maps.app.goo.gl/8GX1kt8W3Lr1SY3j9" target="_blank" rel="noopener">Google Maps</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="wrap reveal">
+        <h2>Vista o que <span class="accent">ninguém mais</span> tem.</h2>
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=5511918939576&text=Ol%C3%A1%21%20Vim%20do%20site%20da%20AOKI%20Store%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">Fale com a gente agora</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <img class="foot-brand-logo" src="logo-aoki.png" alt="AOKI Store">
+          <p>Importados originais, direto do Japão e dos Estados Unidos, com a atitude streetwear do Brasil. 14 anos de credibilidade.</p>
+          <div class="foot-flags" aria-hidden="true">
+            <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
+            <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
+            <span class="flag-ico"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
+          </div>
+        </div>
+        <div class="foot-col">
+          <h4>Navegação</h4>
+          <a href="#historia">Sobre</a>
+          <a href="#paises">Origem</a>
+          <a href="#diferenciais">Diferenciais</a>
+          <a href="#lojas">Lojas</a>
+        </div>
+        <div class="foot-col">
+          <h4>Fale com a gente</h4>
+          <a href="https://api.whatsapp.com/send?phone=5511918939576" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.instagram.com/_aokistorebr/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/AokiStoreBr" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://g.page/r/CUrE3F2BsNdfEBM/review" target="_blank" rel="noopener">Avaliar no Google</a>
+          <a href="index.html">Link na bio</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>CNPJ 38.154.086/0001-80 · Matriz</span>
+        <span>© 2026 AOKI Store · Todos os direitos reservados</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Sticky nav background on scroll
+      var nav = document.getElementById('nav');
+      function onScroll () {
+        if (window.scrollY > 40) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Scroll reveal
+      var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        revealEls.forEach(function (el) { io.observe(el); });
+      } else {
+        revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      // Animated counters
+      var counters = document.querySelectorAll('.stat-num');
+      var countersDone = new WeakSet();
+      function animateCounter (el) {
+        if (countersDone.has(el)) return;
+        countersDone.add(el);
+        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        var suffix = el.getAttribute('data-suffix') || '';
+        var start = performance.now();
+        var duration = 1200;
+        function tick (now) {
+          var p = Math.min((now - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(target * eased) + suffix;
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      if ('IntersectionObserver' in window) {
+        var cIo = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              cIo.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.6 });
+        counters.forEach(function (el) { cIo.observe(el); });
+      } else {
+        counters.forEach(animateCounter);
+      }
+
+      // Infinite marquee strip, always wider than the viewport
+      var half = document.getElementById('stripHalf');
+      var clone = document.getElementById('stripHalfClone');
+      var track = document.getElementById('stripTrack');
+      var template = half.innerHTML;
+      var SPEED = 90;
+      function fillStrip () {
+        var target = Math.max(window.innerWidth * 1.5, 1200);
+        half.innerHTML = template;
+        while (half.scrollWidth < target) {
+          half.innerHTML += template;
+        }
+        clone.innerHTML = half.innerHTML;
+        track.style.setProperty('--dur', (half.scrollWidth / SPEED) + 's');
+      }
+      fillStrip();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(fillStrip, 200);
+      });
+    })();
+  </script>
+</body>
+</html>
