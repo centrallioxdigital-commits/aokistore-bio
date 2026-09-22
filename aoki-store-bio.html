@@ -166,7 +166,11 @@
   .top-banner-track {
     display: inline-flex;
     width: max-content;
-    animation: marquee 16s linear infinite;
+    animation: marquee var(--marquee-duration, 16s) linear infinite;
+  }
+
+  .top-banner-half {
+    display: inline-flex;
   }
 
   .top-banner-item {
@@ -478,89 +482,49 @@
 </head>
 <body>
   <div class="top-banner">
-    <div class="top-banner-track" aria-hidden="false">
-      <span class="top-banner-item">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
-      <span class="top-banner-item" aria-hidden="true">
-        Importados e originais
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
-          <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-        <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-      </span>
+    <div class="top-banner-track" id="marqueeTrack">
+      <div class="top-banner-half" id="marqueeHalf">
+        <span class="top-banner-item">
+          Importados e originais
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2L14.4 4.5L17.7 3.9L18.6 7.1L21.7 8.5L20.4 11.6L21.7 14.7L18.6 16.1L17.7 19.3L14.4 18.7L12 21.2L9.6 18.7L6.3 19.3L5.4 16.1L2.3 14.7L3.6 11.6L2.3 8.5L5.4 7.1L6.3 3.9L9.6 4.5L12 2Z" fill="#1D9BF0"/>
+            <path d="M8.5 12.2L10.7 14.4L15.3 9.6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="flag-ico" role="img" aria-label="Estados Unidos"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
+          <span class="flag-ico" role="img" aria-label="Japão"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
+          <span class="flag-ico" role="img" aria-label="Brasil"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
+        </span>
+      </div>
+      <div class="top-banner-half" id="marqueeHalfClone" aria-hidden="true"></div>
     </div>
   </div>
+  <script>
+    (function () {
+      var half = document.getElementById('marqueeHalf');
+      var clone = document.getElementById('marqueeHalfClone');
+      var track = document.getElementById('marqueeTrack');
+      var template = half.querySelector('.top-banner-item');
+      var SPEED = 160;
+      function fill() {
+        var target = Math.max(window.innerWidth * 1.5, 1200);
+        half.innerHTML = '';
+        var width = 0;
+        while (width < target) {
+          var node = template.cloneNode(true);
+          half.appendChild(node);
+          width += node.getBoundingClientRect().width;
+        }
+        clone.innerHTML = half.innerHTML;
+        track.style.setProperty('--marquee-duration', (width / SPEED) + 's');
+      }
+      fill();
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(fill, 200);
+      });
+    })();
+  </script>
 
   <div class="page">
   <div class="content-grid">
