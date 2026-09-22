@@ -150,10 +150,11 @@
   .strip-track{ display:inline-flex; width:max-content; animation:stripScroll var(--dur,30s) linear infinite; }
   .strip-half{ display:inline-flex; }
   .strip-item{
-    display:inline-flex; align-items:center; gap:14px; padding:14px 28px;
-    color:#fff; font-family:'Anton',sans-serif; font-size:15px; letter-spacing:0.06em;
+    display:inline-flex; align-items:center; gap:10px; padding:12px 22px;
+    color:#fff; font-family:'Jost',sans-serif; font-weight:500; font-size:12.5px;
+    letter-spacing:0.08em; text-transform:uppercase;
   }
-  .strip-item i{ width:5px; height:5px; border-radius:50%; background:var(--aoki-red); display:inline-block; }
+  .strip-item i{ width:3px; height:3px; border-radius:50%; background:var(--aoki-red); display:inline-block; opacity:0.85; }
   @keyframes stripScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
   /* ---------- Reveal ---------- */
