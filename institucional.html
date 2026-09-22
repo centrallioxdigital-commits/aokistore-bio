@@ -226,15 +226,12 @@
   .testi-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
   .testi-wrap{ position:relative; max-width:900px; margin:0 auto; }
   .testi-track{
-    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
-    padding:6px 6px 20px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
-    cursor:grab;
+    display:flex; flex-wrap:wrap; gap:20px; justify-content:center;
+    padding:6px;
   }
-  .testi-track::-webkit-scrollbar{ display:none; }
-  .testi-track.dragging{ cursor:grabbing; scroll-snap-type:none; }
   .testi-card{
-    position:relative; flex:0 0 260px; aspect-ratio:9/16; border-radius:20px; overflow:hidden;
-    scroll-snap-align:center; background:linear-gradient(160deg, var(--ink), #2a2a2a);
+    position:relative; flex:0 1 260px; aspect-ratio:9/16; border-radius:20px; overflow:hidden;
+    background:linear-gradient(160deg, var(--ink), #2a2a2a);
     box-shadow:0 16px 40px rgba(10,10,10,0.18); text-decoration:none; display:block;
     transition:transform .3s ease;
   }
@@ -257,16 +254,7 @@
   .testi-ig{ font-size:12px; color:rgba(255,255,255,0.75); margin:2px 0 0; }
   .testi-card.is-pending{ background:linear-gradient(160deg, var(--ink), #1c1c1c); }
   .testi-card.is-pending .testi-body{ text-align:left; }
-  .testi-nav{
-    display:flex; align-items:center; justify-content:center; gap:14px; margin-top:22px;
-  }
-  .testi-arrow{
-    width:40px; height:40px; border-radius:50%; border:1.5px solid var(--ink); background:#fff;
-    display:flex; align-items:center; justify-content:center; cursor:pointer;
-    transition:background .2s ease, color .2s ease;
-  }
-  .testi-arrow:hover{ background:var(--ink); color:#fff; }
-  @media (max-width:520px){ .testi-card{ flex-basis:220px; } }
+  @media (max-width:520px){ .testi-card{ flex-basis:42%; } }
 
   /* ---------- Pillars ---------- */
   .pillars{ background:var(--panel); }
@@ -322,11 +310,28 @@
   .social-head{ max-width:620px; margin:0 auto 46px; }
   .social-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
   .social-stats{ display:flex; justify-content:center; gap:44px; margin:26px 0 44px; flex-wrap:wrap; }
+  .social-cards{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:20px; margin-bottom:40px;
+  }
   .ig-card{
-    max-width:420px; margin:0 auto 40px; padding:36px 32px; border-radius:20px;
+    flex:1 1 380px; max-width:420px; margin:0; padding:36px 32px; border-radius:20px;
     border:1.5px solid var(--line); background:#fff; text-align:left;
     display:flex; align-items:center; gap:18px;
   }
+  .gmb-card{
+    flex:1 1 380px; max-width:420px; margin:0; padding:36px 32px; border-radius:20px;
+    border:1.5px solid var(--line); background:#fff; text-align:left;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .gmb-top{ display:flex; align-items:center; gap:14px; }
+  .gmb-icon{
+    width:64px; height:64px; border-radius:50%; flex-shrink:0; background:var(--panel);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .gmb-name{ font-weight:600; font-size:15px; margin:0; }
+  .gmb-sub{ font-size:13px; color:var(--muted); margin:2px 0 0; font-weight:300; }
+  .gmb-stars{ display:flex; gap:3px; color:#f5b400; }
+  .gmb-card .btn{ align-self:flex-start; padding:10px 20px; font-size:12px; }
   .ig-avatar{
     width:64px; height:64px; border-radius:50%; flex-shrink:0; padding:3px;
     background:conic-gradient(from 210deg, var(--jp-red), var(--aoki-red), var(--us-navy), var(--br-green), var(--jp-red));
@@ -347,7 +352,9 @@
   .store-top{ display:flex; align-items:center; gap:14px; margin-bottom:14px; }
   .store-pin{ width:44px; height:44px; border-radius:12px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
   .store h3{ font-family:'Jost',sans-serif; font-weight:600; text-transform:none; font-size:19px; letter-spacing:0; }
-  .store-addr{ font-size:13.5px; color:var(--muted); margin:0 0 20px; }
+  .store-addr{ font-size:13.5px; color:var(--muted); margin:0 0 16px; }
+  .store-map{ border-radius:12px; overflow:hidden; height:140px; margin-bottom:18px; border:1px solid var(--line); }
+  .store-map iframe{ width:100%; height:100%; border:0; display:block; }
   .store-actions{ display:flex; gap:10px; flex-wrap:wrap; }
   .store-actions a{ padding:11px 18px; font-size:12px; }
   @media (max-width:760px){ .stores-grid{ grid-template-columns:1fr; } }
@@ -526,8 +533,8 @@
     <section class="testimonials" id="depoimentos">
       <div class="wrap">
         <div class="testi-head reveal">
-          <p class="eyebrow">Quem veste, recomenda</p>
-          <h2>Depoimentos de quem confia na AOKI</h2>
+          <p class="eyebrow">Depoimentos</p>
+          <h2>Artistas que confiam no nosso trabalho</h2>
         </div>
         <div class="testi-wrap reveal">
           <div class="testi-track" id="testiTrack">
@@ -552,14 +559,6 @@
                 <span class="testi-ig">@_aokistorebr</span>
               </span>
             </a>
-          </div>
-          <div class="testi-nav">
-            <span class="testi-arrow" id="testiPrev" aria-label="Anterior">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18 9 12 15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="testi-arrow" id="testiNext" aria-label="Próximo">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18 15 12 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
           </div>
         </div>
       </div>
@@ -614,6 +613,7 @@
           <div class="stat"><span class="stat-num" data-count="64" data-suffix="mil">0</span><span class="stat-label">Seguidores</span></div>
           <div class="stat"><span class="stat-num" data-count="14">0</span><span class="stat-label">Anos de história</span></div>
         </div>
+        <div class="social-cards">
         <div class="ig-card reveal">
           <span class="ig-avatar"><img src="logo-aoki.png" alt="AOKI Store"></span>
           <div>
@@ -622,6 +622,27 @@
             </p>
             <p class="ig-bio">🥇 Credibilidade em 14 anos de vendas<br>👕 Vestuário importado original<br>📍 2 lojas físicas</p>
           </div>
+        </div>
+        <div class="gmb-card reveal">
+          <div class="gmb-top">
+            <span class="gmb-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24"><path d="M22.5 12.23c0-.82-.07-1.42-.22-2.05H12.2v3.71h5.85c-.12.96-.75 2.41-2.16 3.38l-.02.13 3.14 2.36.22.02c2-1.81 3.27-4.48 3.27-7.55Z" fill="#4285F4"/><path d="M12.2 23c2.93 0 5.39-.94 7.19-2.56l-2.86-2.36c-.83.58-1.94.98-3.33.98-2.5 0-4.62-1.63-5.38-3.9l-.11.01-3.26 2.5-.04.11C6.09 20.66 8.92 23 12.2 23Z" fill="#34A853"/><path d="M6.82 15.16A6.9 6.9 0 0 1 6.45 13c0-.75.14-1.48.36-2.16l-.01-.14-3.31-2.53-.11.05A11.3 11.3 0 0 0 2 13c0 1.79.44 3.48 1.38 4.98l3.44-2.82Z" fill="#FBBC05"/><path d="M12.2 6.94c2.04 0 3.42.86 4.2 1.58l2.6-2.5C17.58 4.36 15.13 3 12.2 3 8.92 3 6.09 5.34 4.83 8.68l3.4 2.66c.77-2.27 2.89-3.9 5.97-3.9Z" fill="#EA4335"/></svg>
+            </span>
+            <div>
+              <p class="gmb-name">AOKI Store</p>
+              <p class="gmb-sub">Google Meu Negócio</p>
+            </div>
+          </div>
+          <span class="gmb-stars" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 14.4 8.6 21 9.3 16 13.7 17.5 20.3 12 16.8 6.5 20.3 8 13.7 3 9.3 9.6 8.6 12 2Z"/></svg>
+          </span>
+          <p class="gmb-sub">Veja as avaliações de clientes reais e deixe a sua também.</p>
+          <a class="btn btn-outline" href="https://g.page/r/CUrE3F2BsNdfEBM/review" target="_blank" rel="noopener">Avaliar no Google</a>
+        </div>
         </div>
         <div class="ig-topics reveal-stagger">
           <span class="ig-topic">👕 Streetwear</span>
@@ -645,6 +666,9 @@
               <h3>Shopping Central Park</h3>
             </div>
             <p class="store-addr">Loja física. Encontre no mapa ou navegue direto pelo Waze.</p>
+            <div class="store-map">
+              <iframe src="https://www.google.com/maps?q=-23.6428329,-46.9915545&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Shopping Central Park"></iframe>
+            </div>
             <div class="store-actions">
               <a class="btn btn-outline" href="https://ul.waze.com/ul?venue_id=205129244.2051357972.37999137&overview=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener">Waze</a>
               <a class="btn btn-outline" href="https://maps.app.goo.gl/fysgQj1MYgVGM79x9" target="_blank" rel="noopener">Google Maps</a>
@@ -656,6 +680,9 @@
               <h3>Caucaia do Alto</h3>
             </div>
             <p class="store-addr">Loja física. Encontre no mapa ou navegue direto pelo Waze.</p>
+            <div class="store-map">
+              <iframe src="https://www.google.com/maps?q=-23.68750760,-47.02145560&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Caucaia do Alto"></iframe>
+            </div>
             <div class="store-actions">
               <a class="btn btn-outline" href="https://ul.waze.com/ul?place=ChIJEz2Nht2nz5QRSsTcXYGw118&ll=-23.68750760%2C-47.02145560&navigate=yes&utm_campaign=default&utm_source=waze_website&utm_medium=lm_share_location" target="_blank" rel="noopener">Waze</a>
               <a class="btn btn-outline" href="https://maps.app.goo.gl/8GX1kt8W3Lr1SY3j9" target="_blank" rel="noopener">Google Maps</a>
@@ -695,10 +722,6 @@
         <div class="foot-col">
           <h4>Fale com a gente</h4>
           <a href="https://api.whatsapp.com/send?phone=5511918939576" target="_blank" rel="noopener">WhatsApp</a>
-          <a href="https://www.instagram.com/_aokistorebr/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/AokiStoreBr" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://g.page/r/CUrE3F2BsNdfEBM/review" target="_blank" rel="noopener">Avaliar no Google</a>
-          <a href="index.html">Link na bio</a>
         </div>
       </div>
       <div class="foot-bottom">
@@ -765,42 +788,6 @@
         counters.forEach(function (el) { cIo.observe(el); });
       } else {
         counters.forEach(animateCounter);
-      }
-
-      // Testimonials carousel: drag to scroll + arrow buttons
-      var testiTrack = document.getElementById('testiTrack');
-      var testiPrev = document.getElementById('testiPrev');
-      var testiNext = document.getElementById('testiNext');
-      if (testiTrack) {
-        var isDown = false, startX = 0, startScroll = 0, moved = false;
-        testiTrack.addEventListener('pointerdown', function (e) {
-          isDown = true; moved = false;
-          startX = e.clientX; startScroll = testiTrack.scrollLeft;
-          testiTrack.classList.add('dragging');
-        });
-        window.addEventListener('pointermove', function (e) {
-          if (!isDown) return;
-          var dx = e.clientX - startX;
-          if (Math.abs(dx) > 4) moved = true;
-          testiTrack.scrollLeft = startScroll - dx;
-        });
-        window.addEventListener('pointerup', function () {
-          isDown = false;
-          testiTrack.classList.remove('dragging');
-        });
-        testiTrack.addEventListener('click', function (e) {
-          if (moved) { e.preventDefault(); }
-        });
-        function cardStep () {
-          var card = testiTrack.querySelector('.testi-card');
-          return card ? card.getBoundingClientRect().width + 20 : 280;
-        }
-        testiPrev.addEventListener('click', function () {
-          testiTrack.scrollBy({ left: -cardStep(), behavior: 'smooth' });
-        });
-        testiNext.addEventListener('click', function () {
-          testiTrack.scrollBy({ left: cardStep(), behavior: 'smooth' });
-        });
       }
 
       // Infinite marquee strip, always wider than the viewport
