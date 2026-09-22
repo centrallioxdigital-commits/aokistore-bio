@@ -280,13 +280,17 @@
   .brands-head{ max-width:620px; margin:0 auto 12px; }
   .brands-head h2{ font-size:clamp(26px,3.6vw,38px); margin-top:8px; }
   .brands-sub{ max-width:520px; margin:16px auto 50px; font-size:14.5px; line-height:1.65; color:var(--muted); font-weight:300; }
-  .brands-row{
-    display:flex; flex-wrap:wrap; justify-content:center; align-items:center;
-    gap:14px 10px; margin-bottom:52px;
+  .brands-carousel{
+    overflow:hidden; margin-bottom:52px; position:relative;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image:linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
   }
+  .brands-track{ display:inline-flex; width:max-content; animation:brandsScroll var(--brands-dur,40s) linear infinite; }
+  .brands-half{ display:inline-flex; align-items:center; gap:14px; padding:6px 7px; }
+  @keyframes brandsScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   .brand-chip{
     padding:20px 30px; border:1px solid var(--line); border-radius:14px;
-    color:var(--muted); filter:grayscale(1); opacity:0.65;
+    color:var(--muted); filter:grayscale(1); opacity:0.65; white-space:nowrap;
     transition:transform .3s ease, opacity .3s ease, filter .3s ease, border-color .3s ease, color .3s ease;
     cursor:default;
   }
@@ -297,6 +301,12 @@
   .brand-newbalance{ font-family:'Jost',sans-serif; font-weight:700; font-size:14.5px; letter-spacing:0.03em; text-transform:uppercase; }
   .brand-lacoste{ font-family:'Anton',sans-serif; font-size:17px; letter-spacing:0.14em; }
   .brand-armani{ font-family:'Jost',sans-serif; font-weight:300; font-size:16px; letter-spacing:0.32em; text-transform:uppercase; }
+  .brand-newera{ font-family:'Jost',sans-serif; font-weight:800; font-size:16px; letter-spacing:0.04em; text-transform:uppercase; }
+  .brand-yankees{ font-family:'Anton',sans-serif; font-size:18px; letter-spacing:0.04em; }
+  .brand-fila{ font-family:'Jost',sans-serif; font-weight:800; font-style:italic; font-size:19px; letter-spacing:0.01em; }
+  .brand-champion{ font-family:'Jost',sans-serif; font-weight:700; font-size:16px; letter-spacing:0.08em; text-transform:uppercase; }
+  .brand-tommy{ font-family:'Jost',sans-serif; font-weight:500; font-size:13.5px; letter-spacing:0.18em; text-transform:uppercase; }
+  @media (prefers-reduced-motion:reduce){ .brands-track{ animation:none; } }
   .authenticity{
     display:flex; align-items:center; justify-content:center; gap:14px 34px; flex-wrap:wrap;
     padding:22px 30px; border-radius:999px; background:var(--panel); max-width:820px; margin:0 auto;
@@ -445,6 +455,11 @@
           <span class="strip-item"><i></i>New Balance</span>
           <span class="strip-item"><i></i>Lacoste</span>
           <span class="strip-item"><i></i>Armani</span>
+          <span class="strip-item"><i></i>New Era</span>
+          <span class="strip-item"><i></i>Yankees</span>
+          <span class="strip-item"><i></i>Fila</span>
+          <span class="strip-item"><i></i>Champion</span>
+          <span class="strip-item"><i></i>Tommy Hilfiger</span>
         </div>
         <div class="strip-half" id="stripHalfClone"></div>
       </div>
@@ -457,13 +472,23 @@
           <h2>As marcas que você já confia</h2>
         </div>
         <p class="brands-sub reveal">Selecionamos peças e acessórios originais das grifes mais desejadas do streetwear e da moda urbana, sempre verificadas, sempre sem réplica.</p>
-        <div class="brands-row reveal-stagger">
-          <span class="brand-chip brand-oakley">OAKLEY</span>
-          <span class="brand-chip brand-nike">Nike</span>
-          <span class="brand-chip brand-adidas">adidas</span>
-          <span class="brand-chip brand-newbalance">New Balance</span>
-          <span class="brand-chip brand-lacoste">LACOSTE</span>
-          <span class="brand-chip brand-armani">Armani</span>
+        <div class="brands-carousel reveal">
+          <div class="brands-track" id="brandsTrack">
+            <div class="brands-half" id="brandsHalf">
+              <span class="brand-chip brand-oakley">OAKLEY</span>
+              <span class="brand-chip brand-nike">Nike</span>
+              <span class="brand-chip brand-adidas">adidas</span>
+              <span class="brand-chip brand-newbalance">New Balance</span>
+              <span class="brand-chip brand-lacoste">LACOSTE</span>
+              <span class="brand-chip brand-armani">Armani</span>
+              <span class="brand-chip brand-newera">New Era</span>
+              <span class="brand-chip brand-yankees">Yankees</span>
+              <span class="brand-chip brand-fila">FILA</span>
+              <span class="brand-chip brand-champion">Champion</span>
+              <span class="brand-chip brand-tommy">Tommy Hilfiger</span>
+            </div>
+            <div class="brands-half" id="brandsHalfClone"></div>
+          </div>
         </div>
         <div class="authenticity reveal">
           <span class="authenticity-item">
@@ -806,10 +831,28 @@
         track.style.setProperty('--dur', (half.scrollWidth / SPEED) + 's');
       }
       fillStrip();
+
+      // Infinite brands carousel (second fold), same adaptive-width technique
+      var bHalf = document.getElementById('brandsHalf');
+      var bClone = document.getElementById('brandsHalfClone');
+      var bTrack = document.getElementById('brandsTrack');
+      var bTemplate = bHalf.innerHTML;
+      var B_SPEED = 70;
+      function fillBrands () {
+        var target = Math.max(window.innerWidth * 1.5, 1200);
+        bHalf.innerHTML = bTemplate;
+        while (bHalf.scrollWidth < target) {
+          bHalf.innerHTML += bTemplate;
+        }
+        bClone.innerHTML = bHalf.innerHTML;
+        bTrack.style.setProperty('--brands-dur', (bHalf.scrollWidth / B_SPEED) + 's');
+      }
+      fillBrands();
+
       var resizeTimer;
       window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(fillStrip, 200);
+        resizeTimer = setTimeout(function () { fillStrip(); fillBrands(); }, 200);
       });
     })();
   </script>
