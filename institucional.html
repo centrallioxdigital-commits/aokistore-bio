@@ -145,17 +145,6 @@
   }
   @keyframes cueMove{ 0%,100%{ transform:translateY(0); opacity:1; } 50%{ transform:translateY(12px); opacity:0.3; } }
 
-  /* ---------- Marquee strip ---------- */
-  .strip{ background:var(--ink); overflow:hidden; white-space:nowrap; position:relative; }
-  .strip-track{ display:inline-flex; width:max-content; animation:stripScroll var(--dur,30s) linear infinite; }
-  .strip-half{ display:inline-flex; }
-  .strip-item{
-    display:inline-flex; align-items:center; gap:10px; padding:12px 22px;
-    color:#fff; font-family:'Jost',sans-serif; font-weight:500; font-size:12.5px;
-    letter-spacing:0.08em; text-transform:uppercase;
-  }
-  .strip-item i{ width:3px; height:3px; border-radius:50%; background:var(--aoki-red); display:inline-block; opacity:0.85; }
-  @keyframes stripScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
   /* ---------- Reveal ---------- */
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease; }
@@ -290,12 +279,12 @@
   .brands-half{ display:inline-flex; align-items:center; gap:14px; padding:6px 7px; }
   @keyframes brandsScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
   .brand-chip{
-    padding:20px 30px; border:1px solid var(--line); border-radius:14px;
-    color:var(--muted); filter:grayscale(1); opacity:0.65; white-space:nowrap;
-    transition:transform .3s ease, opacity .3s ease, filter .3s ease, border-color .3s ease, color .3s ease;
+    padding:20px 30px; border:1.5px solid var(--line); border-radius:14px;
+    background:#fff; color:var(--ink); white-space:nowrap;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease, background .3s ease, color .3s ease;
     cursor:default;
   }
-  .brand-chip:hover{ filter:grayscale(0); opacity:1; color:var(--ink); border-color:var(--ink); transform:translateY(-3px); }
+  .brand-chip:hover{ border-color:var(--ink); background:var(--ink); color:#fff; box-shadow:0 12px 26px rgba(10,10,10,0.16); transform:translateY(-3px); }
   .brand-oakley{ font-family:'Anton',sans-serif; font-size:19px; font-style:italic; letter-spacing:0.02em; }
   .brand-nike{ font-family:'Jost',sans-serif; font-weight:800; font-style:italic; font-size:20px; letter-spacing:-0.01em; }
   .brand-adidas{ font-family:'Jost',sans-serif; font-weight:800; font-size:17px; letter-spacing:0.06em; text-transform:uppercase; }
@@ -399,7 +388,6 @@
   @media (prefers-reduced-motion:reduce){
     html{ scroll-behavior:auto; }
     .reveal, .reveal-stagger > *{ transition:none; opacity:1; transform:none; }
-    .strip-track{ animation:none; }
     .scroll-cue span{ animation:none; }
     .country-panel{ transition:none; }
   }
@@ -447,24 +435,6 @@
       <div class="scroll-cue" aria-hidden="true"><span></span></div>
     </section>
 
-    <div class="strip" aria-hidden="true">
-      <div class="strip-track" id="stripTrack">
-        <div class="strip-half" id="stripHalf">
-          <span class="strip-item"><i></i>Oakley</span>
-          <span class="strip-item"><i></i>Nike</span>
-          <span class="strip-item"><i></i>Adidas</span>
-          <span class="strip-item"><i></i>New Balance</span>
-          <span class="strip-item"><i></i>Lacoste</span>
-          <span class="strip-item"><i></i>Armani</span>
-          <span class="strip-item"><i></i>New Era</span>
-          <span class="strip-item"><i></i>Yankees</span>
-          <span class="strip-item"><i></i>Fila</span>
-          <span class="strip-item"><i></i>Champion</span>
-          <span class="strip-item"><i></i>Tommy Hilfiger</span>
-        </div>
-        <div class="strip-half" id="stripHalfClone"></div>
-      </div>
-    </div>
 
     <section class="brands" id="marcas">
       <div class="wrap">
@@ -816,24 +786,7 @@
         counters.forEach(animateCounter);
       }
 
-      // Infinite marquee strip, always wider than the viewport
-      var half = document.getElementById('stripHalf');
-      var clone = document.getElementById('stripHalfClone');
-      var track = document.getElementById('stripTrack');
-      var template = half.innerHTML;
-      var SPEED = 90;
-      function fillStrip () {
-        var target = Math.max(window.innerWidth * 1.5, 1200);
-        half.innerHTML = template;
-        while (half.scrollWidth < target) {
-          half.innerHTML += template;
-        }
-        clone.innerHTML = half.innerHTML;
-        track.style.setProperty('--dur', (half.scrollWidth / SPEED) + 's');
-      }
-      fillStrip();
-
-      // Infinite brands carousel (second fold), same adaptive-width technique
+      // Infinite brands carousel, adaptive-width so it always exceeds the viewport
       var bHalf = document.getElementById('brandsHalf');
       var bClone = document.getElementById('brandsHalfClone');
       var bTrack = document.getElementById('brandsTrack');
@@ -853,7 +806,7 @@
       var resizeTimer;
       window.addEventListener('resize', function () {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function () { fillStrip(); fillBrands(); }, 200);
+        resizeTimer = setTimeout(fillBrands, 200);
       });
     })();
   </script>
