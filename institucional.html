@@ -220,6 +220,54 @@
     .country-panel p{ opacity:1; transform:none; }
   }
 
+  /* ---------- Testimonials ---------- */
+  .testimonials{ background:var(--panel); }
+  .testi-head{ text-align:center; max-width:640px; margin:0 auto 46px; }
+  .testi-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
+  .testi-wrap{ position:relative; max-width:900px; margin:0 auto; }
+  .testi-track{
+    display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory;
+    padding:6px 6px 20px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+    cursor:grab;
+  }
+  .testi-track::-webkit-scrollbar{ display:none; }
+  .testi-track.dragging{ cursor:grabbing; scroll-snap-type:none; }
+  .testi-card{
+    position:relative; flex:0 0 260px; aspect-ratio:9/16; border-radius:20px; overflow:hidden;
+    scroll-snap-align:center; background:linear-gradient(160deg, var(--ink), #2a2a2a);
+    box-shadow:0 16px 40px rgba(10,10,10,0.18); text-decoration:none; display:block;
+    transition:transform .3s ease;
+  }
+  .testi-card:hover{ transform:translateY(-6px); }
+  .testi-card img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .testi-card::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0.05) 45%, rgba(0,0,0,0.85) 100%);
+  }
+  .testi-play{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2;
+    width:56px; height:56px; border-radius:50%; background:rgba(255,255,255,0.92);
+    display:flex; align-items:center; justify-content:center; color:var(--ink);
+    box-shadow:0 8px 20px rgba(0,0,0,0.3); transition:transform .25s ease, background .25s ease;
+  }
+  .testi-card:hover .testi-play{ transform:translate(-50%,-50%) scale(1.1); background:#fff; }
+  .testi-body{ position:absolute; left:0; right:0; bottom:0; z-index:2; padding:18px; color:#fff; }
+  .testi-tag{ font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.75); margin:0 0 4px; }
+  .testi-name{ font-family:'Jost',sans-serif; font-weight:600; font-size:15px; margin:0; }
+  .testi-ig{ font-size:12px; color:rgba(255,255,255,0.75); margin:2px 0 0; }
+  .testi-card.is-pending{ background:linear-gradient(160deg, var(--ink), #1c1c1c); }
+  .testi-card.is-pending .testi-body{ text-align:left; }
+  .testi-nav{
+    display:flex; align-items:center; justify-content:center; gap:14px; margin-top:22px;
+  }
+  .testi-arrow{
+    width:40px; height:40px; border-radius:50%; border:1.5px solid var(--ink); background:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .testi-arrow:hover{ background:var(--ink); color:#fff; }
+  @media (max-width:520px){ .testi-card{ flex-basis:220px; } }
+
   /* ---------- Pillars ---------- */
   .pillars{ background:var(--panel); }
   .pillars-head{ text-align:center; max-width:640px; margin:0 auto 50px; }
@@ -351,6 +399,7 @@
         <a href="#historia">Sobre</a>
         <a href="#marcas">Marcas</a>
         <a href="#paises">Origem</a>
+        <a href="#depoimentos">Depoimentos</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#lojas">Lojas</a>
       </nav>
@@ -470,6 +519,48 @@
               <p>Atitude e cultura de quebrada: a identidade que dá o tom de como cada peça é usada.</p>
             </div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials" id="depoimentos">
+      <div class="wrap">
+        <div class="testi-head reveal">
+          <p class="eyebrow">Quem veste, recomenda</p>
+          <h2>Depoimentos de quem confia na AOKI</h2>
+        </div>
+        <div class="testi-wrap reveal">
+          <div class="testi-track" id="testiTrack">
+            <a class="testi-card" href="https://www.instagram.com/reel/CsUUXl1In-_/" target="_blank" rel="noopener">
+              <img src="testimonial-1.jpg" alt="Depoimento em vídeo: colab AOKI Store com MC Daniel">
+              <span class="testi-play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="testi-body">
+                <span class="testi-tag">Vídeo · Instagram</span>
+                <span class="testi-name">AOKI Store × MC Daniel</span>
+                <span class="testi-ig">@_aokistorebr</span>
+              </span>
+            </a>
+            <a class="testi-card is-pending" href="https://www.instagram.com/p/C0Fdh79xDnH/" target="_blank" rel="noopener">
+              <span class="testi-play" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+              <span class="testi-body">
+                <span class="testi-tag">Vídeo · Instagram</span>
+                <span class="testi-name">Ver depoimento completo</span>
+                <span class="testi-ig">@_aokistorebr</span>
+              </span>
+            </a>
+          </div>
+          <div class="testi-nav">
+            <span class="testi-arrow" id="testiPrev" aria-label="Anterior">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18 9 12 15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="testi-arrow" id="testiNext" aria-label="Próximo">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18 15 12 9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
         </div>
       </div>
     </section>
@@ -674,6 +765,42 @@
         counters.forEach(function (el) { cIo.observe(el); });
       } else {
         counters.forEach(animateCounter);
+      }
+
+      // Testimonials carousel: drag to scroll + arrow buttons
+      var testiTrack = document.getElementById('testiTrack');
+      var testiPrev = document.getElementById('testiPrev');
+      var testiNext = document.getElementById('testiNext');
+      if (testiTrack) {
+        var isDown = false, startX = 0, startScroll = 0, moved = false;
+        testiTrack.addEventListener('pointerdown', function (e) {
+          isDown = true; moved = false;
+          startX = e.clientX; startScroll = testiTrack.scrollLeft;
+          testiTrack.classList.add('dragging');
+        });
+        window.addEventListener('pointermove', function (e) {
+          if (!isDown) return;
+          var dx = e.clientX - startX;
+          if (Math.abs(dx) > 4) moved = true;
+          testiTrack.scrollLeft = startScroll - dx;
+        });
+        window.addEventListener('pointerup', function () {
+          isDown = false;
+          testiTrack.classList.remove('dragging');
+        });
+        testiTrack.addEventListener('click', function (e) {
+          if (moved) { e.preventDefault(); }
+        });
+        function cardStep () {
+          var card = testiTrack.querySelector('.testi-card');
+          return card ? card.getBoundingClientRect().width + 20 : 280;
+        }
+        testiPrev.addEventListener('click', function () {
+          testiTrack.scrollBy({ left: -cardStep(), behavior: 'smooth' });
+        });
+        testiNext.addEventListener('click', function () {
+          testiTrack.scrollBy({ left: cardStep(), behavior: 'smooth' });
+        });
       }
 
       // Infinite marquee strip, always wider than the viewport
