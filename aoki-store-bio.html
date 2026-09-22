@@ -65,8 +65,10 @@
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   body::before {
@@ -94,6 +96,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow-x: hidden;
   }
 
   .content-grid,
@@ -109,6 +112,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    overflow-x: hidden;
   }
 
   .logo-wrap {
@@ -155,12 +159,8 @@
     background: var(--ink);
     overflow: hidden;
     white-space: nowrap;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100%;
+    align-self: stretch;
   }
 
   .top-banner-track {
@@ -477,8 +477,6 @@
 </style>
 </head>
 <body>
-<div class="page">
-
   <div class="top-banner">
     <div class="top-banner-track" aria-hidden="false">
       <span class="top-banner-item">
@@ -564,6 +562,7 @@
     </div>
   </div>
 
+  <div class="page">
   <div class="content-grid">
   <main class="hero">
     <div class="logo-wrap">
