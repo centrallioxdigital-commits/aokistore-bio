@@ -295,11 +295,25 @@
 
   .link-btn.primary {
     background: var(--whatsapp-green);
-    border-color: var(--whatsapp-green);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     color: #fff;
+    box-shadow: 0 4px 14px rgba(21, 138, 65, 0.25);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  .link-btn.primary:hover { background: var(--whatsapp-green-deep); border-color: var(--whatsapp-green-deep); }
+  .link-btn.primary:hover {
+    background: var(--whatsapp-green-deep);
+    border-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 6px 20px rgba(21, 138, 65, 0.4);
+  }
+
+  .link-btn.primary:active {
+    transform: scale(0.97);
+    background: var(--whatsapp-green-deep);
+    border-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 2px 8px rgba(21, 138, 65, 0.3);
+    transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease, box-shadow 0.12s ease;
+  }
 
   .link-btn.dark {
     background: var(--ink);
