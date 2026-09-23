@@ -176,40 +176,6 @@
     .story-visual{ order:-1; max-width:340px; margin:0 auto; }
   }
 
-  /* ---------- Countries ---------- */
-  .countries-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
-  .countries-head h2{ font-size:clamp(28px,4vw,42px); margin-top:8px; }
-  .countries-grid{ display:flex; gap:14px; height:460px; }
-  .country-panel{
-    position:relative; flex:1; border-radius:16px; overflow:hidden; cursor:pointer;
-    display:flex; align-items:flex-end; padding:30px 24px;
-    transition:flex-grow .55s cubic-bezier(.22,1,.36,1);
-    isolation:isolate;
-  }
-  .country-panel::before{ content:""; position:absolute; inset:0; z-index:-2; }
-  .country-panel::after{ content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.65) 100%); }
-  .country-panel.jp::before{ background:linear-gradient(160deg, #fff 0%, #fdecef 55%, var(--jp-red) 190%); }
-  .country-panel.us::before{ background:linear-gradient(160deg, #f4f4fa 0%, #dfe0ee 55%, var(--us-navy) 190%); }
-  .country-panel.br::before{ background:linear-gradient(160deg, #eafff0 0%, var(--br-yellow) 65%, var(--br-green) 190%); }
-  .country-panel:hover{ flex-grow:2.1; }
-  .country-flag{ position:absolute; top:24px; left:24px; width:38px; height:27px; border-radius:4px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,255,255,0.6), 0 6px 16px rgba(0,0,0,0.25); }
-  .country-panel h3{ position:relative; color:#fff; font-size:26px; letter-spacing:0.02em; text-shadow:0 2px 10px rgba(0,0,0,0.35); }
-  .country-panel p{
-    position:relative; color:rgba(255,255,255,0.92); font-size:13.5px; line-height:1.6; font-weight:300;
-    max-width:280px; margin:10px 0 0; opacity:0; transform:translateY(8px);
-    transition:opacity .35s ease .1s, transform .35s ease .1s;
-  }
-  .country-panel:hover p{ opacity:1; transform:translateY(0); }
-  @media (max-width:760px){
-    .countries-grid{ flex-direction:column; height:auto; }
-    .country-panel{
-      height:auto; flex-grow:0 !important; padding:22px;
-      flex-direction:column; align-items:flex-start; gap:14px;
-    }
-    .country-flag{ position:static; }
-    .country-panel p{ opacity:1; transform:none; }
-  }
-
   /* ---------- Testimonials ---------- */
   .testimonials{ background:var(--panel); }
   .testi-head{ text-align:center; max-width:640px; margin:0 auto 46px; }
@@ -389,7 +355,6 @@
     html{ scroll-behavior:auto; }
     .reveal, .reveal-stagger > *{ transition:none; opacity:1; transform:none; }
     .scroll-cue span{ animation:none; }
-    .country-panel{ transition:none; }
     .wa-pulse{ animation:none; }
     .wa-typing i{ animation:none; }
   }
@@ -461,7 +426,6 @@
       <nav class="nav-links">
         <a href="#historia">Sobre</a>
         <a href="#marcas">Marcas</a>
-        <a href="#paises">Origem</a>
         <a href="#depoimentos">Depoimentos</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#lojas">Lojas</a>
@@ -547,38 +511,6 @@
           <div class="story-visual">
             <img class="story-photo" src="story-photo.jpg" alt="Cliente AOKI Store vestindo peça original da marca">
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="paises">
-      <div class="wrap">
-        <div class="countries-head reveal">
-          <p class="eyebrow">De onde vem a AOKI</p>
-          <h2>Japão × Estados Unidos × Brasil</h2>
-        </div>
-        <div class="countries-grid reveal">
-          <article class="country-panel jp">
-            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg></span>
-            <div>
-              <h3>Japão</h3>
-              <p>Curadoria rigorosa e respeito à qualidade: cada peça é escolhida como se fosse pra uso próprio.</p>
-            </div>
-          </article>
-          <article class="country-panel us">
-            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect y="0" width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="13" height="10.77" fill="#3c3b6e"/></svg></span>
-            <div>
-              <h3>Estados Unidos</h3>
-              <p>Streetwear original, direto de lá: as peças que definiram a cultura urbana no mundo todo.</p>
-            </div>
-          </article>
-          <article class="country-panel br">
-            <span class="country-flag"><svg viewBox="0 0 30 20" xmlns="http://www.w3.org/2000/svg"><rect width="30" height="20" fill="#009c3b"/><polygon points="15,3 27,10 15,17 3,10" fill="#ffdf00"/><circle cx="15" cy="10" r="4.5" fill="#002776"/></svg></span>
-            <div>
-              <h3>Brasil</h3>
-              <p>Atitude e cultura de quebrada: a identidade que dá o tom de como cada peça é usada.</p>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -768,7 +700,6 @@
         <div class="foot-col">
           <h4>Navegação</h4>
           <a href="#historia">Sobre</a>
-          <a href="#paises">Origem</a>
           <a href="#diferenciais">Diferenciais</a>
           <a href="#lojas">Lojas</a>
         </div>
